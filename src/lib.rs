@@ -12,7 +12,6 @@ fn alloc_error_handler(layout: alloc::alloc::Layout) -> ! {
 }
 pub mod kernel;
 pub mod serial;
-pub mod vga_buffer;
 pub mod task;
 
 pub trait Testable {

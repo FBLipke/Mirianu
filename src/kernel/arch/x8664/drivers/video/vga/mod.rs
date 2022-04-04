@@ -1,3 +1,5 @@
+//! Even though VGA is old, many modern graphics cards are compatible with it. This can make writing a VGA driver rather attractive.
+//! The amount of compatibility varies however, so never assume a card is compatible without proper hardware detection.
 use core::fmt;
 use lazy_static::lazy_static;
 use spin::Mutex;
@@ -169,10 +171,10 @@ impl fmt::Write for Writer {
 /// Like the `print!` macro in the standard library, but prints to the VGA text buffer.
 #[macro_export]
 macro_rules! print {
-    ($($arg:tt)*) => ($crate::vga_buffer::_print(format_args!($($arg)*)));
+    ($($arg:tt)*) => ($crate::kernel::arch::x8664::drivers::video::vga::_print(format_args!($($arg)*)));
 }
 
-/// Like the `println!` macro in the standard library, but prints to the VGA text buffer.
+/// Prints Text to the VGA Text Buffer.
 #[macro_export]
 macro_rules! println {
     () => ($crate::print!("\n"));
