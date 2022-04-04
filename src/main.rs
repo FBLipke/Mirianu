@@ -13,9 +13,9 @@ use mirianu_os::task::keyboard;
 
 entry_point!(kernel_main);
 fn kernel_main(boot_info: &'static BootInfo) -> ! {
-	use mirianu_os::memory;
+	use mirianu_os::kernel::memory;
 	use x86_64::{structures::paging::Page, VirtAddr};
-	use mirianu_os::memory::BootInfoFrameAllocator;	
+	use mirianu_os::kernel::memory::BootInfoFrameAllocator;	
 	use mirianu_os::allocator;
 
 	println!("Mirianu 0.1");
@@ -30,7 +30,7 @@ fn kernel_main(boot_info: &'static BootInfo) -> ! {
     	};
 
 	let page = Page::containing_address(VirtAddr::new(0));
-    	memory::create_example_mapping(page, &mut mapper, &mut frame_allocator);
+    	memory::create_memory_mapping(page, &mut mapper, &mut frame_allocator);
 
 	let page_ptr: *mut u64 = page.start_address().as_mut_ptr();
 	unsafe { page_ptr.offset(400).write_volatile(0x_f021_f077_f065_f04e)};

@@ -1,3 +1,5 @@
+//!The interrupt descriptor table (IDT) associates each exception or interrupt vector with a gate descriptor for the 
+//!procedure or task used to service the associated exception or interrupt.
 use x86_64::structures::idt::{InterruptDescriptorTable, InterruptStackFrame};
 use crate::println;
 use crate::kernel::arch::x8664::gdt;

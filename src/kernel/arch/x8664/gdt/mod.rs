@@ -1,3 +1,6 @@
+//!The GDTR register holds the base address (32 bits in protected mode; 64 bits in IA-32e mode) and the 16-bit table 
+//!limit for the GDT. The base address specifies the linear address of byte 0 of the GDT; the table limit specifies the 
+//!number of bytes in the table. 
 use x86_64::VirtAddr;
 use x86_64::structures::tss::TaskStateSegment;
 use x86_64::structures::gdt::{GlobalDescriptorTable, Descriptor};

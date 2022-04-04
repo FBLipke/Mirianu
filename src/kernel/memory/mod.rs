@@ -44,6 +44,7 @@ impl BootInfoFrameAllocator {
     }
 }
 
+///Initialize Memory Management
 pub unsafe fn init(physical_memory_offset: VirtAddr) -> OffsetPageTable<'static> {
     let level_4_table = active_level_4_table(physical_memory_offset);
     OffsetPageTable::new(level_4_table, physical_memory_offset)
@@ -69,6 +70,7 @@ unsafe fn active_level_4_table(physical_memory_offset: VirtAddr)
     &mut *page_table_ptr // unsafe
 }
 
+///Translate Virtual Addresses to Physical Addresses
 pub unsafe fn translate_addr(addr: VirtAddr, physical_memory_offset: VirtAddr)
     -> Option<PhysAddr>
 {
@@ -108,9 +110,6 @@ fn translate_addr_inner(addr: VirtAddr, physical_memory_offset: VirtAddr)
     Some(frame.start_address() + u64::from(addr.page_offset()))
 }
 
-
-pub struct EmptyFrameAllocator;
-
 unsafe impl FrameAllocator<Size4KiB> for BootInfoFrameAllocator {
     fn allocate_frame(&mut self) -> Option<PhysFrame> {
         let frame = self.usable_frames().nth(self.next);
@@ -118,14 +117,14 @@ unsafe impl FrameAllocator<Size4KiB> for BootInfoFrameAllocator {
         frame
     }
 }
-
+pub struct EmptyFrameAllocator;
 unsafe impl FrameAllocator<Size4KiB> for EmptyFrameAllocator {
     fn allocate_frame(&mut self) -> Option<PhysFrame> {
         None
     }
 }
 
-pub fn create_example_mapping(
+pub fn create_memory_mapping(
     page: Page,
     mapper: &mut OffsetPageTable,
     frame_allocator: &mut impl FrameAllocator<Size4KiB>,
@@ -141,5 +140,3 @@ pub fn create_example_mapping(
     };
     map_to_result.expect("map_to failed").flush();
 }
-
-
