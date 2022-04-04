@@ -16,7 +16,7 @@ fn kernel_main(boot_info: &'static BootInfo) -> ! {
 	use mirianu_os::kernel::memory;
 	use x86_64::{structures::paging::Page, VirtAddr};
 	use mirianu_os::kernel::memory::BootInfoFrameAllocator;	
-	use mirianu_os::allocator;
+	use mirianu_os::kernel::memory::allocator;
 
 	println!("Mirianu 0.1");
 	println!("[I] Booting...");

@@ -19,21 +19,37 @@ lazy_static! {
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 #[repr(u8)]
 pub enum Color {
+	/// 0
     Black = 0,
+    	/// 1
     Blue = 1,
+	/// 2
     Green = 2,
+	/// 3
     Cyan = 3,
+	/// 4
     Red = 4,
+	/// 5
     Magenta = 5,
+	/// 6
     Brown = 6,
+	/// 7
     LightGray = 7,
+	/// 8
     DarkGray = 8,
+	/// 9
     LightBlue = 9,
+	/// 10
     LightGreen = 10,
+	/// 11
     LightCyan = 11,
+	/// 12
     LightRed = 12,
+	/// 13
     Pink = 13,
+	/// 14
     Yellow = 14,
+	/// 15
     White = 15,
 }
 

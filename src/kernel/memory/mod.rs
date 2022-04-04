@@ -1,3 +1,5 @@
+pub mod allocator;
+
 use x86_64::{
     PhysAddr, structures::paging::{Page, PhysFrame, Mapper, Size4KiB, FrameAllocator, PageTable}, VirtAddr
 };
